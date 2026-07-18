@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover">
+<title>FB Video Downloader | HN-AMAN</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@600;800;900&family=Rajdhani:wght@500;600;700&family=Share+Tech+Mono&family=Poppins:wght@600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+</head>
+<body>
+  <div class="app-container">
+    <div class="header">
+      <div class="logo-float">
+        <div class="logo-ring">
+          <img class="logo-img" src="https://ik.imagekit.io/amanphoto/20260620_164003.png?updatedAt=1781955650166" alt="HN-AMAN">
+        </div>
+        <div class="logo-dashed-ring"></div>
+      </div>
+      <div class="eyebrow">Dev AMAN ULLAH</div>
+      <h1 style="display:flex; align-items:center; justify-content:center; gap:10px;">
+        <svg width="26" height="26" viewBox="0 0 24 24" style="flex-shrink:0;">
+          <path fill="#22d3ee" d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5.02 3.66 9.18 8.44 9.94v-7.03H7.9v-2.91h2.54V9.85c0-2.51 1.49-3.9 3.77-3.9 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.89h2.78l-.44 2.91h-2.34V22c4.78-.76 8.44-4.92 8.44-9.94z"/>
+        </svg>
+        FB DOWNLOADER
+      </h1>
+      <p>Fetch any Facebook video — pick your quality, grab the file.</p>
+      <div class="creator">HN-AMAN</div>
+    </div>
+
+    <div class="stats-bar">
+      <div class="stat-chip">
+        <span class="stat-num" id="statTotal">0</span>
+        <span class="stat-label">Downloads</span>
+      </div>
+      <div class="stat-chip">
+        <span class="stat-num" id="statToday">0</span>
+        <span class="stat-label">Today</span>
+      </div>
+      <div class="stat-chip">
+        <span class="stat-num">HD</span>
+        <span class="stat-label">Max Quality</span>
+      </div>
+    </div>
+
+    <div class="input-section">
+      <label class="input-label">Facebook URL</label>
+      <input type="text" class="url-input" id="urlInput" placeholder="https://www.facebook.com/share/r/... or https://fb.watch/...">
+    </div>
+
+    <button class="fetch-btn" id="fetchBtn">Fetch Video</button>
+
+    <div class="loading" id="loading">
+      <div class="scan-line"></div>
+      <p>Scanning source...</p>
+    </div>
+
+    <div class="result-card" id="resultCard">
+      <div class="video-info">
+        <div class="thumb-frame" id="thumbFrame">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#22d3ee" stroke-width="1.6"><path d="M4 6h16v12H4z" stroke-linejoin="round"/><path d="M10 9.5v5l4.5-2.5z" fill="#22d3ee" stroke="none"/></svg>
+        </div>
+        <div class="video-details">
+          <div class="video-title" id="videoTitle">-</div>
+          <div class="quality-badge" id="qualityBadge">Choose quality below</div>
+        </div>
+      </div>
+      <div class="quality-dropdown" id="qualityDropdown">
+        <button class="quality-toggle-btn" id="qualityToggleBtn" type="button">
+          <span id="qualityToggleLabel">Select quality</span>
+          <span class="q-toggle-icon">▾</span>
+        </button>
+        <div class="quality-buttons" id="qualityButtons" style="display:none;"></div>
+      </div>
+      <div class="action-buttons">
+        <a href="#" class="action-btn" id="downloadLinkBtn" download style="display:none;">Download Video</a>
+        <button class="action-btn new-btn" id="newDownloadBtn">New Download</button>
+      </div>
+    </div>
+
+    <div class="error-message" id="errorMessage"></div>
+
+    <div class="history-section" id="historySection">
+      <div class="history-head">
+        <span class="h-title">Recent Downloads</span>
+        <button class="history-clear" id="historyClearBtn">Clear</button>
+      </div>
+      <div class="history-list" id="historyList"></div>
+    </div>
+
+    <div class="steps-section">
+      <span class="steps-head">How it works</span>
+      <div class="step-row">
+        <div class="step-item">
+          <div class="step-num">1</div>
+          <div class="step-text">
+            <div class="step-title">Copy the link</div>
+            <div class="step-desc">Open the video or reel on Facebook, tap Share, then Copy Link.</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">2</div>
+          <div class="step-text">
+            <div class="step-title">Paste & fetch</div>
+            <div class="step-desc">Paste the link above and tap Fetch Video to scan it.</div>
+          </div>
+        </div>
+        <div class="step-item">
+          <div class="step-num">3</div>
+          <div class="step-text">
+            <div class="step-title">Pick quality & download</div>
+            <div class="step-desc">Choose your preferred resolution and tap Download Video.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="app-footer">
+    <span>© 2026 All Rights Reserved Created By <span class="footer-name">AMAN ULLAH</span></span>
+    </div>
+
+    <a href="https://aman-social-downloader.vercel.app/" target="_blank" class="more-tools-btn">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+      More Tools
+    </a>
+  </div>
+
+  <div class="wa-overlay" id="waOverlay">
+    <div class="wa-modal">
+      <button class="wa-modal-close" id="waModalClose">✕</button>
+      <div class="wa-modal-avatar">
+        <img src="https://ik.imagekit.io/amanphoto/20260620_164003.png?updatedAt=1781955650166" alt="HN-AMAN">
+        <div class="wa-online-dot"></div>
+      </div>
+      <div class="wa-modal-title">Join Our WhatsApp Channel</div>
+      <div class="wa-modal-desc">Get the latest tools, updates &amp; drops from HN-AMAN straight on WhatsApp.</div>
+      <a href="https://whatsapp.com/channel/0029Vb8Hsxs72WU1Dx57eu1q" target="_blank" class="wa-modal-btn">
+    Join Channel
+    </a>
+
+    <button class="wa-modal-later" id="waModalLater">
+    Maybe later
+    </button>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
